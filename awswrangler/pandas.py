@@ -999,6 +999,6 @@ class Pandas:
     def drop_duplicated_columns(dataframe: pd.DataFrame, inplace: bool = True) -> pd.DataFrame:
         if inplace is False:
             dataframe = dataframe.copy(deep=True)
-        duplicated_cols = dataframe.columns.duplicated()
+        duplicated_cols = list(dataframe.columns[dataframe.columns.duplicated()])
         logger.warning(f"Dropping repeated columns: {duplicated_cols}")
         return dataframe.loc[:, ~duplicated_cols]
